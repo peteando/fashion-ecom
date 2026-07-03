@@ -1,21 +1,21 @@
-// models/Product.ts
-import mongoose, { Document, Schema, Model } from "mongoose";
+// app/models/Product.ts
+import mongoose, { Schema, Model } from "mongoose";
 
-export interface IProduct extends Document {
-  _id: string;        // Force _id to be a string
+export interface IProduct {
+  _id: string;
   name: string;
   category: string;
   price: number;
   brand: string;
-  image?: string;     // Change from string[] to string to match Compass
-  createdAt: Date;
-  updatedAt: Date;
+  image?: string;
+  createdAt?: Date;
+  updatedAt?: Date;
 }
 
-const ProductSchema: Schema<IProduct> = new mongoose.Schema(
+const ProductSchema = new Schema<IProduct>(
   {
     _id: {
-      type: String,   // Tell Mongoose to expect text string IDs
+      type: String,
       required: true,
     },
     name: {
@@ -39,15 +39,15 @@ const ProductSchema: Schema<IProduct> = new mongoose.Schema(
       trim: true,
     },
     image: {
-      type: String,   // Change from [String] to String to match Compass
+      type: String,
       required: false,
     },
   },
   { timestamps: true }
 );
 
-// Explicitly pass "products" as the 3rd argument to target your exact collection
-const Product: Model<IProduct> = 
-  mongoose.models.Product || mongoose.model<IProduct>("Product", ProductSchema, "products");
+const Product: Model<IProduct> =
+  mongoose.models.Product ||
+  mongoose.model<IProduct>("Product", ProductSchema, "products");
 
 export default Product;

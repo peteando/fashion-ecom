@@ -77,7 +77,7 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
       category,
       price: Number(price),
       brand,
-      image: imageUrls,
+      image: imageUrls[0],
     });
 
     return NextResponse.json(
