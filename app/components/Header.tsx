@@ -16,7 +16,7 @@ type CartItem = {
   price: number;
 };
 
-export default function Header(): JSX.Element {
+export default function Header() {
   const [dropdown, setDropdown] = useState<boolean>(false);
 //   const [cartOpen, setCartOpen] = useState<boolean>(false);
 
