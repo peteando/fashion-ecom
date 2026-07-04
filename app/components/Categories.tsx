@@ -1,6 +1,6 @@
 import React from "react";
 
-const Categories = (): JSX.Element => {
+const Categories = () => {
   return (
     <div className="container mx-auto px-3">
       <div>

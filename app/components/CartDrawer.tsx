@@ -70,13 +70,15 @@ export default function CartDrawer() {
                 key={item.id}
                 className="flex gap-3 items-center border-b pb-3"
               >
-                <Image
-                  src={item.image}
-                  width={60}
-                  height={60}
-                  alt={item.name}
-                  className="rounded object-cover"
-                />
+                {item.image && (
+  <Image
+    src={item.image}
+    width={60}
+    height={60}
+    alt={item.name}
+    className="rounded object-cover"
+  />
+)}
 
                 <div className="flex-1">
                   <p className="font-semibold">{item.name}</p>

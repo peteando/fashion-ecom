@@ -9,7 +9,7 @@ interface Product {
   brand: string;
   category: string;
   price: number;
-  image: string[];
+  image: string;
 }
 
 export default function BestSellers2() {
@@ -26,7 +26,6 @@ export default function BestSellers2() {
         }
 
         const data: Product[] = await res.json();
-
         setProducts(data);
       } catch (err) {
         console.error("Error fetching products:", err);
@@ -51,22 +50,27 @@ export default function BestSellers2() {
       </h2>
 
       <div className="grid grid-cols-6 gap-5">
-        {products.slice(0, 12).map((product) => (
-          <div key={product._id}>
-            <Link href={`/product/${product._id}`}>
-              <img
-                src={product.image?.[0] || "/images/placeholder.png"}
-                alt={product.name}
-                className="w-full object-cover"
-              />
-            </Link>
+        {products.slice(0, 12).map((product) => {
+          console.log("FULL PRODUCT:");
+          console.log(JSON.stringify(product, null, 2));
 
-            <p className="font-bold mt-5">{product.name}</p>
-            <p>{product.brand}</p>
-            <p>{product.category}</p>
-            <p>AUD ${product.price}</p>
-          </div>
-        ))}
+          return (
+            <div key={product._id}>
+              <Link href={`/product/${product._id}`}>
+                <img
+                  src={product.image || "/images/placeholder.png"}
+                  alt={product.name}
+                  className="w-full object-cover"
+                />
+              </Link>
+
+              <p className="font-bold mt-5">{product.name}</p>
+              <p>{product.brand}</p>
+              <p>{product.category}</p>
+              <p>AUD ${product.price}</p>
+            </div>
+          );
+        })}
       </div>
     </div>
   );

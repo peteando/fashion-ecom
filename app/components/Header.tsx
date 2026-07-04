@@ -77,7 +77,7 @@ const handleCartClick = (): void => {
               </Link>
             </li>
             <li>
-              <Link href="#" className="leading-normal text-cyan-950 text-lg hover:text-black">
+              <Link href="/admin/products" className="leading-normal text-cyan-950 text-lg hover:text-black">
                 Products
               </Link>
             </li>

@@ -7,17 +7,17 @@ export interface IProduct {
   category: string;
   price: number;
   brand: string;
-  image?: string;
+  image?: string[];
   createdAt?: Date;
   updatedAt?: Date;
 }
 
 const ProductSchema = new Schema<IProduct>(
   {
-    _id: {
-      type: String,
-      required: true,
-    },
+    // _id: {
+    //   type: String,
+    //   required: true,
+    // },
     name: {
       type: String,
       required: [true, "Product name is required"],
@@ -39,9 +39,9 @@ const ProductSchema = new Schema<IProduct>(
       trim: true,
     },
     image: {
-      type: String,
-      required: false,
-    },
+  type: [String],
+  default: [],
+},
   },
   { timestamps: true }
 );
