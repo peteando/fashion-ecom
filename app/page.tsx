@@ -6,7 +6,7 @@ import BestSellers from "./components/Bestsellers";
 // import BestSellers2 from "/components/Bestsellers2";
 import Brands from "./components/Brands";
 
-const HomePage = (): JSX.Element => {
+const HomePage = () => {
   return (
     <div>
       <Hero />
