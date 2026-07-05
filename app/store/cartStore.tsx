@@ -2,7 +2,7 @@
 
 import { create } from "zustand";
 
-type CartItem = {
+export type CartItem = {
   id: string;
   name: string;
   price: number;
@@ -35,13 +35,14 @@ export const useCartStore = create<CartStore>((set) => ({
     })),
 
   openCart: () => set({ cartOpen: true }),
+
   closeCart: () => set({ cartOpen: false }),
 
   addToCart: (item) =>
     set((state) => {
-      const existing = state.cartItems.find((i) => i.id === item.id);
+      const existingItem = state.cartItems.find((i) => i.id === item.id);
 
-      if (existing) {
+      if (existingItem) {
         return {
           cartItems: state.cartItems.map((i) =>
             i.id === item.id
@@ -67,11 +68,12 @@ export const useCartStore = create<CartStore>((set) => ({
 
   decreaseQuantity: (id) =>
     set((state) => ({
-      cartItems: state.cartItems.map((item) =>
-        item.id === id && item.quantity > 1
-          ? { ...item, quantity: item.quantity - 1 }
-          : item
-      ),
+      cartItems: state.cartItems
+        .map((item) =>
+          item.id === id
+            ? { ...item, quantity: Math.max(1, item.quantity - 1) }
+            : item
+        ),
     })),
 
   removeItem: (id) =>

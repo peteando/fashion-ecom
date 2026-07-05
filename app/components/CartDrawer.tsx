@@ -50,7 +50,7 @@ export default function CartDrawer() {
   return (
     <>
       <div
-        className={`fixed top-0 right-0 h-full w-80 bg-white shadow-lg transform transition-transform duration-300 z-60
+        className={`fixed top-0 right-0 h-screen w-80 bg-white shadow-lg transform transition-transform duration-300 z-60 flex flex-col
         ${cartOpen ? "translate-x-0" : "translate-x-full"}`}
       >
         <div className="p-4 flex justify-between items-center border-b">
@@ -61,7 +61,7 @@ export default function CartDrawer() {
           </button>
         </div>
 
-        <div className="p-4 flex flex-col gap-4 overflow-y-auto h-[85%]">
+        <div className="p-4 flex-1 flex flex-col gap-4 overflow-y-auto">
           {cartItems.length === 0 ? (
             <p>Your cart is empty.</p>
           ) : (
@@ -71,14 +71,14 @@ export default function CartDrawer() {
                 className="flex gap-3 items-center border-b pb-3"
               >
                 {item.image && (
-  <Image
-    src={item.image}
-    width={60}
-    height={60}
-    alt={item.name}
-    className="rounded object-cover"
-  />
-)}
+                  <Image
+                    src={item.image}
+                    width={60}
+                    height={60}
+                    alt={item.name}
+                    className="rounded object-cover"
+                  />
+                )}
 
                 <div className="flex-1">
                   <p className="font-semibold">{item.name}</p>
@@ -115,7 +115,7 @@ export default function CartDrawer() {
         </div>
 
         {cartItems.length > 0 && (
-          <div className="border-t p-4">
+          <div className="border-t p-4 bg-white">
             <div className="flex justify-between mb-3">
               <span className="font-semibold">Subtotal:</span>
               <span className="font-semibold">${subtotal.toFixed(2)}</span>
